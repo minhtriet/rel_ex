@@ -8,7 +8,7 @@ import encoder
 enc = encoder.RobertaSentenceEncoder(max_length=128)
 
 class FewRel(CombinationMetaDataset):
-    def __init__(self, root="/Users/mtriet/Code/FewRel/data", num_classes_per_task=None, meta_train=False,
+    def __init__(self, root="data", num_classes_per_task=None, meta_train=False,
                  meta_val=False, meta_test=False, meta_split="train",
                  use_vinyals_split=True, target_transform=None,):
         class_splitter = ClassSplitter(num_train_per_class=5, random_state_seed=10)
