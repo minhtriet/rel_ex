@@ -22,7 +22,7 @@ class FewRelClassDataset(ClassDataset):
                  use_vinyals_split=True, transform=None, class_augmentations=None):
         super().__init__(meta_split=meta_split)
         self.root = root
-        filename = "train_wiki.json"
+        filename = "temp.json"
         path = os.path.join(root, filename)
         if not os.path.exists(path):
             raise FileNotFoundError(f"{filename} does not exist at {root}!")
@@ -36,7 +36,7 @@ class FewRelClassDataset(ClassDataset):
 
     def __getitem__(self, index):
         class_name = self.classes[index % self.num_classes]
-        data = self.data[0][class_name]
+        data = self.json_data[class_name]
         transform = self.encoder.tokenize
         class_id = self.read_labels().index(class_name)
         return FewRelDataset(index, data, class_id, transform=transform)
